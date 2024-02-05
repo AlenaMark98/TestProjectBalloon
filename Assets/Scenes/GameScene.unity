@@ -173,7 +173,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -288,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825750917375047632, guid: 1de47623bc5344f4d9e06b4d773c79eb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5825750917375047636, guid: 1de47623bc5344f4d9e06b4d773c79eb, type: 3}
       propertyPath: m_Pivot.x
@@ -488,6 +488,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861618748446974912, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -509
+      objectReference: {fileID: 0}
+    - target: {fileID: 3311384473886727229, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: _numberSpawnObjectScene
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6048570854349287304, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -572,13 +616,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6048570854349287307, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6048570854349287308, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
       propertyPath: m_Name
       value: GameScreen
       objectReference: {fileID: 0}
     - target: {fileID: 6048570854349287308, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
