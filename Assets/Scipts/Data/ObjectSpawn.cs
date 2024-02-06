@@ -11,6 +11,10 @@ namespace BalloonProject.Data
         [SerializeField] private ObjectSpawnSO _objectSpawnSO = default;
 
         /// <summary>
+        /// Изменена категория объекта
+        /// </summary>
+        public event Action OnChangedTag = delegate { };
+        /// <summary>
         /// Изменение очков за объект
         /// </summary>
         public event Action OnChangedPoint = delegate { };
@@ -19,6 +23,22 @@ namespace BalloonProject.Data
         /// </summary>
         public event Action OnChangedSpeed = delegate { };
 
+        /// <summary>
+        /// Категория объекта
+        /// </summary>
+        public string Tag
+        {
+            get => _tag;
+            set
+            {
+                if (value != _tag)
+                {
+                    _tag = value;
+                    OnChangedTag();
+                }
+            }
+        }
+        
         /// <summary>
         /// Очки за объект (начисление/вычетание)
         /// </summary>
@@ -58,13 +78,14 @@ namespace BalloonProject.Data
         {
             return _init;
         }
-
+        
+        private string _tag = default;
         private int _point = default;
         private float _speed = default;
 
         private bool _init = false;
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             Init();
         }
@@ -76,6 +97,7 @@ namespace BalloonProject.Data
         {
             if (_objectSpawnSO != null)
             {
+                Tag = _objectSpawnSO.Tag;
                 Point = _objectSpawnSO.Point;
                 Speed = _objectSpawnSO.Speed;
                 _init = true;

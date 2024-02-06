@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3817167988472414407
+--- !u!1001 &6659672224117858309
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269912, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269912, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269912, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -73,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269912, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 75
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269912, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -196
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269912, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -93,19 +93,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269913, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_Color.b
-      value: 0.95231724
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269913, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_Color.g
-      value: 0.68301886
+      value: 0.8348112
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269913, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3405815931713269915, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_Name
-      value: Balloon Negativ
+      value: Balloon Negative2
       objectReference: {fileID: 0}
     - target: {fileID: 3405815933615173286, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
       propertyPath: m_Text
@@ -115,5 +115,13 @@ PrefabInstance:
       propertyPath: _objectSpawnSO
       value: 
       objectReference: {fileID: 11400000, guid: b062e6b4ad91d41409759cbf1029f1b9, type: 2}
+    - target: {fileID: 5210952419159331747, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
+      propertyPath: m_Size.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210952419159331747, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}
+      propertyPath: m_Size.y
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0671486f8f26e4092d6a70fa7cf45b, type: 3}

@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9db72baa02c55e54986a195920afc3fe, type: 3}
-  m_Name: BalloonSO Negative
+  m_Name: NegativeBalloonSO
   m_EditorClassIdentifier: 
+  _tag: BalloonNegative
   _point: -1
-  _speed: 5
+  _speed: 0.5

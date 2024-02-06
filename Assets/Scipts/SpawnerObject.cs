@@ -5,73 +5,58 @@ using BalloonProject.Data;
 
 namespace BalloonProject
 {
-
     /// <summary>
     /// Спавнер объектов для взаимодействия с игроком
     /// </summary>
     public class SpawnerObject : MonoBehaviour
     {
-        [SerializeField]
-        private int _numberSpawnObjectScene = 10;
-
-        [SerializeField] private RectTransform _targetSpawnObject;
-
-        [SerializeField] private List<ObjectSpawn> _listObjectSpawnsPrefabs;
-
-        [SerializeField] private List<ObjectSpawn> _listObjectSpawnsInScene = new List<ObjectSpawn>();
-
-        /// <summary>
-        /// Список всех созданных объектов на сцене
-        /// </summary>
-        public IReadOnlyList<ObjectSpawn> ListObjectSpawnsInScene => _listObjectSpawnsInScene;
-
+        [SerializeField] private RectTransform _startTargetSpawnObject = default;
 
         private float _minX, _maxX, _minY, _maxY;
-        private Vector2 _pos;
-        
+        private ObjectPooler _objectPooler;
+        private Coroutine _timerSpawnObjects;
 
         void Start()
         {
-            SetMinAndMAx();
-            InstantiateObject(_numberSpawnObjectScene);
+            _objectPooler = ObjectPooler.Instance;
+            SetStartPosition();
         }
 
-        void Update()
+        private void FixedUpdate()
         {
+            if (_timerSpawnObjects == null)
+            {
+                _timerSpawnObjects = StartCoroutine(Spawn());
+            }
 
         }
 
-        private void SetMinAndMAx()
+        private void SetStartPosition()
         {
-            //Fixme: исправить координаты
-            Vector2 _bounds = new Vector2(_targetSpawnObject.rect.width / 2, _targetSpawnObject.rect.height / 2);
-            Debug.Log(_bounds);
-            _minX = -_bounds.x;
-            _maxX = _bounds.x;
-            _minY = -_bounds.y;
-            _maxY = _bounds.y;
+            _minX = 0;
+            _maxX = _startTargetSpawnObject.rect.width;
+            _minY = _startTargetSpawnObject.position.y - _startTargetSpawnObject.rect.height / 2;
+            _maxY = _startTargetSpawnObject.position.y + _startTargetSpawnObject.rect.height / 2;
 
             Debug.Log(_minX + " " + _maxX + "    " + _minY + " " + _maxY);
         }
 
-        private void InstantiateObject(int _numberObjScene)
+        private void SpawnObject()
         {
+            Vector2 _position = new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY));
+            //NOTE: Возможен вариант добавления процента вывода определнных значений
+            int _numberObj = Random.Range(0, _objectPooler.Pools.Count);
 
-            for (int i = 0; i < _numberObjScene; i++)
-            {
-                int _numberObject = Random.Range(0, _listObjectSpawnsPrefabs.Count);
-                _pos = new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY));
+            _objectPooler.SpawnObject(_objectPooler.Pools[_numberObj].Tag, _position, Quaternion.identity);
 
-                GameObject _balloonGO = Instantiate(_listObjectSpawnsPrefabs[_numberObject].gameObject, _pos, Quaternion.identity, _targetSpawnObject);
+            StopCoroutine(_timerSpawnObjects);
+            _timerSpawnObjects = null;
+        }
 
-                Debug.Log(_balloonGO + "  " + _pos);
-
-                if (_balloonGO != null)
-                {
-                    _listObjectSpawnsInScene.Add(_listObjectSpawnsPrefabs[0]);
-                }
-            
-            }
+        private IEnumerator Spawn()
+        {
+            yield return new WaitForSeconds(1f);
+            SpawnObject();
         }
     }
 }
