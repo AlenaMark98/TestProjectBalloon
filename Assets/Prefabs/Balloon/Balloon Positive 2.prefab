@@ -1,19 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &470282723709515141
+--- !u!1001 &3689210361652014790
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2410172688443439599, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
-      propertyPath: _objectSpawnSO
-      value: 
-      objectReference: {fileID: 11400000, guid: b062e6b4ad91d41409759cbf1029f1b9, type: 2}
     - target: {fileID: 3733083746177145990, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Name
-      value: Balloon1 Negative
+      value: Balloon1 Positive 2
       objectReference: {fileID: 0}
     - target: {fileID: 5304312033204862444, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Pivot.x
@@ -99,17 +95,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9045542290076080269, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
-      propertyPath: m_Text
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 9045542291432785586, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Color.b
-      value: 0.9529412
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9045542291432785586, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Color.g
-      value: 0.68235296
+      value: 0.8352941
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045542291432785586, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}

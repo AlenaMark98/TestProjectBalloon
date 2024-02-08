@@ -10,7 +10,7 @@ namespace BalloonProject
     /// </summary>
     public sealed class SpawnerObject : MonoBehaviour
     {
-        [SerializeField] 
+        [SerializeField]
         private RectTransform _startTargetSpawnObject;
         [SerializeField]
         private float _timeAfterWhichToSpawnObject = 0.5f;
@@ -41,12 +41,12 @@ namespace BalloonProject
             }
         }
 
-        private void SetStartPosition(RectTransform _rectTransform)
+        private void SetStartPosition(RectTransform _startRect)
         {
             _minX = 0;
-            _maxX = _rectTransform.rect.width;
-            _minY = _rectTransform.position.y - _rectTransform.rect.height / 2;
-            _maxY = _rectTransform.position.y + _rectTransform.rect.height / 2;
+            _maxX = Screen.width;
+            _minY = _startRect.position.y - _startRect.rect.height / 2;
+            _maxY = _startRect.position.y + _startRect.rect.height / 2;
         }
 
         private void SpawnObject()
