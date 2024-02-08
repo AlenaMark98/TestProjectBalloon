@@ -488,22 +488,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1697393674840819150, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1600
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697393674840819150, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697393674840819150, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1697393674840819150, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 222
-      objectReference: {fileID: 0}
     - target: {fileID: 3311384473886727229, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
       propertyPath: _numberSpawnObjectScene
       value: 5
@@ -603,10 +587,6 @@ PrefabInstance:
     - target: {fileID: 6048570854349287308, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6379835083423158518, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}
-      propertyPath: m_TagString
-      value: Finish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0c57ebe01aaa64e8787828fa259555, type: 3}

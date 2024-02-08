@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BalloonProject.Data;
+using BalloonProject.PoolObject;
 
 namespace BalloonProject
 {
     /// <summary>
     /// Спавнер объектов для взаимодействия с игроком
     /// </summary>
-    public class SpawnerObject : MonoBehaviour
+    public sealed class SpawnerObject : MonoBehaviour
     {
-        [SerializeField] private RectTransform _startTargetSpawnObject = default;
+        [SerializeField] 
+        private RectTransform _startTargetSpawnObject;
+        [SerializeField]
+        private float _timeAfterWhichToSpawnObject = 0.5f;
 
-        private float _minX, _maxX, _minY, _maxY;
-        private ObjectPooler _objectPooler;
-        private Coroutine _timerSpawnObjects;
+        private ObjectPooler _objectPooler = default;
+        private Coroutine _timerSpawnObjects = default;
+        private float _minX = 0, _maxX = 0, _minY = 0, _maxY = 0;
 
-        void Start()
+        private void Start()
         {
             _objectPooler = ObjectPooler.Instance;
-            SetStartPosition();
+            SetStartPosition(_startTargetSpawnObject);
         }
 
         private void FixedUpdate()
@@ -28,26 +31,31 @@ namespace BalloonProject
             {
                 _timerSpawnObjects = StartCoroutine(Spawn());
             }
-
         }
 
-        private void SetStartPosition()
+        private void OnDisable()
+        {
+            if (_timerSpawnObjects != null)
+            { 
+                StopCoroutine(_timerSpawnObjects);
+            }
+        }
+
+        private void SetStartPosition(RectTransform _rectTransform)
         {
             _minX = 0;
-            _maxX = _startTargetSpawnObject.rect.width;
-            _minY = _startTargetSpawnObject.position.y - _startTargetSpawnObject.rect.height / 2;
-            _maxY = _startTargetSpawnObject.position.y + _startTargetSpawnObject.rect.height / 2;
-
-            Debug.Log(_minX + " " + _maxX + "    " + _minY + " " + _maxY);
+            _maxX = _rectTransform.rect.width;
+            _minY = _rectTransform.position.y - _rectTransform.rect.height / 2;
+            _maxY = _rectTransform.position.y + _rectTransform.rect.height / 2;
         }
 
         private void SpawnObject()
         {
             Vector2 _position = new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY));
-            //NOTE: Возможен вариант добавления процента вывода определнных значений
+            //NOTE: добавить процент выпадения определнных значений
             int _numberObj = Random.Range(0, _objectPooler.Pools.Count);
 
-            _objectPooler.SpawnObject(_objectPooler.Pools[_numberObj].Tag, _position, Quaternion.identity);
+            _objectPooler.SpawnPoolObject(_objectPooler.Pools[_numberObj].Tag, _position, Quaternion.identity, transform);
 
             StopCoroutine(_timerSpawnObjects);
             _timerSpawnObjects = null;
@@ -55,7 +63,7 @@ namespace BalloonProject
 
         private IEnumerator Spawn()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_timeAfterWhichToSpawnObject);
             SpawnObject();
         }
     }

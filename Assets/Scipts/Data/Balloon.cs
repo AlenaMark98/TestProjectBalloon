@@ -5,27 +5,16 @@ using UnityEngine;
 namespace BalloonProject.Data
 {
     /// <summary>
-    /// Пул объект
-    /// </summary>
-    public interface IPoolObject
-    {
-        /// <summary>
-        /// Вызван пул объект
-        /// </summary>
-        public void OnObjectSpawn();
-    }
-
-    /// <summary>
     /// Воздушный шар
     /// </summary>
     public class Balloon : ObjectSpawn, IPoolObject
     {
+        private float _speedMin = 0.5f;
+        private float _speedMax = 2.01f;
+
         private Vector2 _directionUP = new Vector2(0, 1f);
 
-        void Update()
-        {
-            Move(_directionUP);
-        }
+        private void Update() => Move(_directionUP);
 
         public override void Move(Vector2 _directionMove)
         {
@@ -35,19 +24,13 @@ namespace BalloonProject.Data
 
         private void OnCollisionStay2D(Collision2D _collision)
         {
-            Debug.Log(_collision.collider.tag == "Finish");
-            if (_collision.collider.tag == "Finish")
+            Debug.Log(_collision.collider.tag == "RespawnObject");
+            if (_collision.collider.tag == "RespawnObject")
             {
                 gameObject.SetActive(false);
             }
         }
 
-        /// <summary>
-        /// Вызван пул объект
-        /// </summary>
-        public void OnObjectSpawn()
-        {
-            Speed = Random.Range(0.5f, 2f);
-        }
+        public void OnObjectSpawn() => Speed = Random.Range(_speedMin, _speedMax);
     }
 }

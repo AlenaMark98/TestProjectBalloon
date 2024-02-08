@@ -11,7 +11,7 @@ namespace BalloonProject.Data
         [SerializeField] private ObjectSpawnSO _objectSpawnSO = default;
 
         /// <summary>
-        /// Изменена категория объекта
+        /// Изменен Тег объекта
         /// </summary>
         public event Action OnChangedTag = delegate { };
         /// <summary>
@@ -24,7 +24,7 @@ namespace BalloonProject.Data
         public event Action OnChangedSpeed = delegate { };
 
         /// <summary>
-        /// Категория объекта
+        /// Тег объекта
         /// </summary>
         public string Tag
         {
@@ -74,21 +74,15 @@ namespace BalloonProject.Data
         /// <summary>
         /// Объект проинициализирован
         /// </summary>
-        public bool IsInit() 
-        {
-            return _init;
-        }
-        
+        public bool IsInit() => _init;
+
         private string _tag = default;
         private int _point = default;
         private float _speed = default;
 
         private bool _init = false;
 
-        protected virtual void Awake()
-        {
-            Init();
-        }
+        protected virtual void Awake() => Init();
 
         /// <summary>
         /// Инициализация объекта
@@ -99,7 +93,7 @@ namespace BalloonProject.Data
             {
                 Tag = _objectSpawnSO.Tag;
                 Point = _objectSpawnSO.Point;
-                Speed = _objectSpawnSO.Speed;
+                Speed = 0.5f;
                 _init = true;
             }
             else

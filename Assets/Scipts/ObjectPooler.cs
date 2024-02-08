@@ -2,7 +2,7 @@
 using UnityEngine;
 using BalloonProject.Data;
 
-namespace BalloonProject
+namespace BalloonProject.PoolObject
 {
     /// <summary>
     /// Пул объект
@@ -18,101 +18,44 @@ namespace BalloonProject
         /// Объект для спавна
         /// </summary>
         public ObjectSpawn ObjectSpawn;
-        /// <summary>
-        /// Количество объектов, которое нужно создать
-        /// </summary>
-        public int NumberOfObjects;
     }
 
     /// <summary>
     /// Пулер объектов
     /// </summary>
-    public class ObjectPooler : MonoBehaviour
+    public sealed class ObjectPooler : MonoBehaviour
     {
         /// <summary>
         /// Ссылка на экземпляр класса
         /// </summary>
-        public static ObjectPooler Instance;
+        public static ObjectPooler Instance = default;
 
-        [SerializeField] private List<Pool> _pools;
-        public IReadOnlyList<Pool> Pools => _pools;
-
+        [SerializeField] 
+        private List<Pool> _pools;
         /// <summary>
-        /// Созданные пул объекты
+        /// Ссылка на экземпляр пулов
         /// </summary>
-        public Dictionary<string, Queue<ObjectSpawn>> _poolDictionary = new Dictionary<string, Queue<ObjectSpawn>>();
+        public IReadOnlyList<Pool> Pools => _pools;
 
         /// <summary>
         /// Созданные пул объекты
         /// </summary>
         public List<ObjectSpawn> _listAllPoolInScene = new List<ObjectSpawn>();
 
-        private void Awake()
-        {
-            Instance = this;
-            
-            _poolDictionary = new Dictionary<string, Queue<ObjectSpawn>>();
-        }
+        private bool _inactiveObjectPresent = false;
 
-        private void SpawnAllObjects()
-        {
-            foreach (Pool _pool in _pools)
-            {
-                Queue<ObjectSpawn> _objectPool = new Queue<ObjectSpawn>();
-
-                for (int i = 0; i < _pool.NumberOfObjects; i++)
-                {
-                    GameObject _gameObj = Instantiate(_pool.ObjectSpawn.gameObject, new Vector2(0, 0), Quaternion.identity, transform);
-                    _gameObj.SetActive(false);
-                    _objectPool.Enqueue(_gameObj.GetComponent<ObjectSpawn>());
-                }
-
-                _poolDictionary.Add(_pool.Tag, _objectPool);
-            }
-        }
+        private void Awake() => Instance = this;
 
         /// <summary>
-        /// Включать объекты из пула
+        /// Включить объекты из пула или создать новый
         /// </summary>
         /// <param name="_tag"> Тег объектов </param>
         /// <param name="_position"> Начальная позиция </param>
         /// <param name="_rotation"> Поворот объекта </param>
-        /// <returns> спавн объект </returns>
-        public ObjectSpawn SpawnFromPool(string _tag, Vector2 _position, Quaternion _rotation)
+        /// <param name="_transform"> Родитель объекта </param>
+        public void SpawnPoolObject(string _tag, Vector2 _position, Quaternion _rotation, Transform _transform)
         {
-            Debug.Log(_tag + "  " + _poolDictionary.ContainsKey(_tag));
-            if (!_poolDictionary.ContainsKey(_tag))
-            {
-                Debug.LogWarning("Not tag");
-                return null;
-            }
-
-            ObjectSpawn _objectToSpawn = _poolDictionary[_tag].Dequeue();
-
-            _objectToSpawn.gameObject.SetActive(true);
-            _objectToSpawn.gameObject.transform.position = _position;
-            _objectToSpawn.gameObject.transform.rotation = _rotation;
-
-            IPoolObject _poolObject = _objectToSpawn.GetComponent<IPoolObject>();
-            if (_poolObject != null)
-            {
-                _poolObject.OnObjectSpawn();
-            }
-
-            _poolDictionary[_tag].Enqueue(_objectToSpawn);
-
-            return _objectToSpawn;
-        }
-
-        /// <summary>
-        /// Включать объекты из пула
-        /// </summary>
-        /// <param name="_tag"> Тег объектов </param>
-        /// <param name="_position"> Начальная позиция </param>
-        /// <param name="_rotation"> Поворот объекта </param>
-        public void SpawnObject(string _tag, Vector2 _position, Quaternion _rotation)
-        {
-            bool _inactiveObjectPresent = false;
+            _inactiveObjectPresent = false;
 
             for (int i = 0; i < _listAllPoolInScene.Count; i++)
             {
@@ -122,14 +65,9 @@ namespace BalloonProject
                     _listAllPoolInScene[i].gameObject.transform.rotation = _rotation;
                     _listAllPoolInScene[i].gameObject.SetActive(true);
 
-                    IPoolObject _poolObject = _listAllPoolInScene[i].GetComponent<IPoolObject>();
-                    if (_poolObject != null)
-                    {
-                        _poolObject.OnObjectSpawn();
-                    }
+                    UpdatePoolObjectFunctions(_listAllPoolInScene[i]);
 
                     _inactiveObjectPresent = true;
-
                     break;
                 }
             }
@@ -140,23 +78,27 @@ namespace BalloonProject
                 {
                     if (_pool.Tag == _tag)
                     {
-                        GameObject _gameObj = Instantiate(_pool.ObjectSpawn.gameObject, _position, _rotation, transform);
+                        GameObject _gameObj = Instantiate(_pool.ObjectSpawn.gameObject, _position, _rotation, _transform);
                         ObjectSpawn _objSpawn = _gameObj.GetComponent<ObjectSpawn>();
 
-                        IPoolObject _poolObject = _objSpawn.GetComponent<IPoolObject>();
-                        if (_poolObject != null)
-                        {
-                            _poolObject.OnObjectSpawn();
-                        }
-
+                        UpdatePoolObjectFunctions(_objSpawn);
                         _listAllPoolInScene.Add(_objSpawn);
                     }
                     
                 }
             }
 
-
         }
+
+        private void UpdatePoolObjectFunctions(ObjectSpawn _objSpawn)
+        {
+            IPoolObject _poolObject = _objSpawn.GetComponent<IPoolObject>();
+            if (_poolObject != null)
+            {
+                _poolObject.OnObjectSpawn();
+            }
+        }
+
 
     }
 }
