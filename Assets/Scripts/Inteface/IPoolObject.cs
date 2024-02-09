@@ -8,6 +8,6 @@
         /// <summary>
         /// Вызван пул объект
         /// </summary>
-        public void OnObjectSpawn();
+        public void OnSpawnPoolObject();
     }
 }

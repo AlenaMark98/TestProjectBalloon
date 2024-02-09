@@ -10,15 +10,16 @@ namespace BalloonProject.Data
     /// </summary>
     public class Balloon : ObjectSpawn, IPoolObject, IPointerDownHandler
     {
-        private float _speedMin = 3f;
-        private float _speedMax = 6f;
-
         private Vector2 _directionUP = new Vector2(0, 1f);
 
         private Rigidbody2D _rb = default;
         private Animator _animator = default;
 
-        private void Start() => _rb = GetComponent<Rigidbody2D>();
+        private void Start()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
+        }
 
         private void FixedUpdate() => Move(_directionUP);
 
@@ -32,11 +33,15 @@ namespace BalloonProject.Data
             }
         }
 
-        public void OnObjectSpawn() => Speed = Random.Range(_speedMin, _speedMax);
+        public void OnSpawnPoolObject() => Speed = Random.Range(MinSpeed, MaxSpeed);
 
         private void Bang() => gameObject.SetActive(false);
 
-        public void OnPointerDown(PointerEventData eventData) => _animator.SetTrigger("Bang");
-
+        //NOTE: не разделен контроллер от даты
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _animator.SetTrigger("Bang");
+            Bootstrap.Instance.ScoreManager.UpdateScore(Point);
+        }
     }
 }

@@ -10,14 +10,14 @@ namespace BalloonProject
     /// </summary>
     public sealed class SpawnerObject : MonoBehaviour
     {
-        [SerializeField]
-        private RectTransform _startTargetSpawnObject;
-        [SerializeField]
-        private float _timeAfterWhichToSpawnObject = 0.5f;
+        [SerializeField] private RectTransform _startTargetSpawnObject;
+        [SerializeField] private float _timeAfterWhichToSpawnObject = 0.5f;
 
         private ObjectPooler _objectPooler = default;
         private Coroutine _timerSpawnObjects = default;
         private float _minX = 0, _maxX = 0, _minY = 0, _maxY = 0;
+
+        private bool _isStartSpawn = false;
 
         private void Start()
         {
@@ -27,7 +27,7 @@ namespace BalloonProject
 
         private void FixedUpdate()
         {
-            if (_timerSpawnObjects == null)
+            if (_isStartSpawn && _timerSpawnObjects == null)
             {
                 _timerSpawnObjects = StartCoroutine(Spawn());
             }
@@ -41,6 +41,11 @@ namespace BalloonProject
             }
         }
 
+        /// <summary>
+        /// Начать спавн объектов
+        /// </summary>
+        public void StartSpawn() => _isStartSpawn = true;
+
         private void SetStartPosition(RectTransform _startRect)
         {
             _minX = 0;
@@ -52,7 +57,8 @@ namespace BalloonProject
         private void SpawnObject()
         {
             Vector2 _position = new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY));
-            //NOTE: добавить процент выпадения определнных значений
+            
+            //NOTE: можно добавить процент выпадения определнных значений
             int _numberObj = Random.Range(0, _objectPooler.Pools.Count);
 
             _objectPooler.SpawnPoolObject(_objectPooler.Pools[_numberObj].Tag, _position, Quaternion.identity, transform);

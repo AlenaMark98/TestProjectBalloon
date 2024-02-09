@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BalloonProject.Data
 {
@@ -22,6 +23,14 @@ namespace BalloonProject.Data
         /// Изменение скорокти объекта
         /// </summary>
         public event Action OnChangedSpeed = delegate { };
+        /// <summary>
+        /// Изменение скорокти объекта
+        /// </summary>
+        public event Action OnChangedSpeedMin = delegate { };
+        /// <summary>
+        /// Изменение скорокти объекта
+        /// </summary>
+        public event Action OnChangedSpeedMax = delegate { };
 
         /// <summary>
         /// Тег объекта
@@ -70,6 +79,37 @@ namespace BalloonProject.Data
                 }
             }
         }
+        
+        /// <summary>
+        /// Скороть минимального движения объекта
+        /// </summary>
+        public float MinSpeed
+        {
+            get => _minSpeed;
+            set
+            {
+                if (value != _minSpeed)
+                {
+                    _minSpeed = value;
+                    OnChangedSpeedMin();
+                }
+            }
+        }
+        /// <summary>
+        /// Скороть Маскимального движения объекта
+        /// </summary>
+        public float MaxSpeed
+        {
+            get => _maxSpeed;
+            set
+            {
+                if (value != _maxSpeed)
+                {
+                    _maxSpeed = value;
+                    OnChangedSpeedMax();
+                }
+            }
+        }
 
         /// <summary>
         /// Объект проинициализирован
@@ -79,6 +119,8 @@ namespace BalloonProject.Data
         private string _tag = default;
         private int _point = default;
         private float _speed = default;
+        private float _minSpeed = default;
+        private float _maxSpeed = default;
 
         private bool _init = false;
 
@@ -93,7 +135,9 @@ namespace BalloonProject.Data
             {
                 Tag = _objectSpawnSO.Tag;
                 Point = _objectSpawnSO.Point;
-                Speed = 0.5f;
+                MinSpeed = _objectSpawnSO.MinSpeed;
+                MaxSpeed = _objectSpawnSO.MaxSpeed;
+                Speed = Random.Range(MinSpeed, MaxSpeed);
                 _init = true;
             }
             else

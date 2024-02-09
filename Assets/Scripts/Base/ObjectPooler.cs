@@ -95,7 +95,7 @@ namespace BalloonProject.PoolObject
             IPoolObject _poolObject = _objSpawn.GetComponent<IPoolObject>();
             if (_poolObject != null)
             {
-                _poolObject.OnObjectSpawn();
+                _poolObject.OnSpawnPoolObject();
             }
         }
 

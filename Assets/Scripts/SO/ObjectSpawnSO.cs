@@ -10,6 +10,8 @@ namespace BalloonProject.Data
     {
         [SerializeField] private string _tag = "Object";
         [SerializeField] private int _point = 1;
+        [SerializeField] private float _minSpeed = 3f;
+        [SerializeField] private float _maxSpeed = 6f;
 
         /// <summary>
         /// Категория объекта
@@ -20,5 +22,15 @@ namespace BalloonProject.Data
         /// Очки за объект 
         /// </summary>
         public int Point => _point;
+
+        /// <summary>
+        /// Минимальная скорость
+        /// </summary>
+        public float MinSpeed => _minSpeed;
+
+        /// <summary>
+        /// Максимальная скорокть
+        /// </summary>
+        public float MaxSpeed => _maxSpeed;
     }
 }
