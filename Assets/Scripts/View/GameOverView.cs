@@ -42,6 +42,7 @@ namespace BalloonProject
         /// <param name="_score"> счет </param>
         public void UpdateView(float _time, int _score)
         {
+            //FIXME: Исправить формат времени
             this._time = "00 : " + _time.ToString();
             this._score = _score.ToString();
         }

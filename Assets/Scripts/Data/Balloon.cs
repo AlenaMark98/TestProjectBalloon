@@ -26,7 +26,7 @@ namespace BalloonProject.Data
 
         private void FixedUpdate() => Move(_directionUP);
 
-        public override void Move(Vector2 _directionMove) => _rb.MovePosition(_rb.position + _directionMove * Speed);
+        public override void Move(Vector2 _directionMove) => _rb.AddForce( _directionMove.normalized * Speed, ForceMode2D.Impulse);
 
         private void OnTriggerStay2D(Collider2D collision)
         {

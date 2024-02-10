@@ -62,7 +62,7 @@ namespace BalloonProject
             //TODO: добавить процент выпадения определнных значений
             int _numberObj = Random.Range(0, _objectPooler.Pools.Count);
 
-            _objectPooler.SpawnPoolObject(_objectPooler.Pools[_numberObj].ObjectSpawn.ID, _position, Quaternion.identity, transform);
+            _objectPooler.SpawnPoolObject(_objectPooler.Pools[_numberObj].Tag, _position, Quaternion.identity, transform);
 
             StopCoroutine(_timerSpawnObjects);
             _timerSpawnObjects = null;

@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2410172688443439599, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
+      propertyPath: _objectSpawnSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 690f4e6f9512c894883225602692b937, type: 2}
     - target: {fileID: 3733083746177145990, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Name
-      value: Balloon1 Positive 2
+      value: Balloon Positive 2
       objectReference: {fileID: 0}
     - target: {fileID: 5304312033204862444, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Pivot.x
@@ -94,6 +98,10 @@ PrefabInstance:
     - target: {fileID: 5304312033204862444, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045542290076080269, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
+      propertyPath: m_Text
+      value: +2
       objectReference: {fileID: 0}
     - target: {fileID: 9045542291432785586, guid: 1e6d4ad97f7699e4990e2b983af86e5b, type: 3}
       propertyPath: m_Color.b

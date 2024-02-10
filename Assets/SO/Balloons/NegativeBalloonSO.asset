@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: NegativeBallloon
   _point: -1
-  _minSpeed: 4
-  _maxSpeed: 6
+  _minSpeed: 1.4
+  _maxSpeed: 1.6

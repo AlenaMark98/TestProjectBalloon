@@ -11,7 +11,10 @@ namespace BalloonProject.PoolObject
     public class Pool
     {
         //TODO: Переделать на общий тип пул
-
+        /// <summary>
+        /// Тег объекта
+        /// </summary>
+        public string Tag;
         /// <summary>
         /// Объект для спавна
         /// </summary>
@@ -74,7 +77,7 @@ namespace BalloonProject.PoolObject
             {
                 foreach (Pool _pool in _pools)
                 {
-                    if (_pool.ObjectSpawn.ID == _tag)
+                    if (_pool.Tag == _tag)
                     {
                         GameObject _gameObj = Instantiate(_pool.ObjectSpawn.gameObject, _position, _rotation, _transform);
                         ObjectSpawn _objSpawn = _gameObj.GetComponent<ObjectSpawn>();

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: PositiveBalloon2
   _point: 2
-  _minSpeed: 6
-  _maxSpeed: 8
+  _minSpeed: 1.6
+  _maxSpeed: 1.8

@@ -18,8 +18,6 @@ namespace BalloonProject
 
         private void Awake()
         {
-            Time.timeScale = 1;
-
             _timeManager = Bootstrap.Instance.TimerManager;
             _scoreManager = Bootstrap.Instance.ScoreManager;
             _resultSaver = Bootstrap.Instance.ResultsSaver; 
