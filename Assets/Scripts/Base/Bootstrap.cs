@@ -25,9 +25,13 @@ namespace BalloonProject
         [SerializeField] private UIManager _uiManager = default;
         //TODO: в дальнейшем нужны менеджеры
         [SerializeField] private SpawnerObject _spawnerObject = default;
-        [SerializeField] private ResultsSaver _resultsSaver = default;
+        
+        private ResultsSaver _resultsSaver = default;
 
-
+        /// <summary>
+        /// Ссылка на экземляр класса
+        /// </summary>
+        public LevelSettingsSO LevelSettings => _levelSettings;
         /// <summary>
         /// Ссылка на экземляр класса
         /// </summary>
@@ -45,12 +49,18 @@ namespace BalloonProject
         /// </summary>
         public UIManager UIManager => _uiManager;
 
-        private void Awake() => Instance = this;
+        private void Awake()
+        {
+            Instance = this;
+            _resultsSaver = FindObjectOfType<ResultsSaver>();
+        }
 
         private void Start()
         {
-            _timeManager.StartTimer(_levelSettings.Duration);
             _spawnerObject.StartSpawn();
+            _uiManager.UpdateTime(_levelSettings.Duration);
+            _timeManager.StartTimer(_levelSettings.Duration);
+            
         }
 
     }

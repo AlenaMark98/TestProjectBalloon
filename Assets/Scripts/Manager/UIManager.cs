@@ -18,18 +18,23 @@ namespace BalloonProject
         private ScoreManager _scoreManager = default;
         private ResultsSaver _resultSaver = default;
 
-        private void Start()
+        private void Awake()
         {
+            Time.timeScale = 1;
+
             _timeManager = Bootstrap.Instance.TimerManager;
             _scoreManager = Bootstrap.Instance.ScoreManager;
-            _resultSaver = Bootstrap.Instance.ResultsSaver;
+            _resultSaver = Bootstrap.Instance.ResultsSaver; 
+        }
 
+        private void OnEnable()
+        {
             _timeManager.OnTick += UpdateTime;
             _timeManager.OnEndTime += EndGame;
             _scoreManager.OnUpdateScore += UpdateScore;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _timeManager.OnTick -= UpdateTime;
             _timeManager.OnEndTime -= EndGame;
@@ -37,7 +42,11 @@ namespace BalloonProject
         }
 
         private void UpdateScore(int _number) => _scoreView.CurrentScore = _number;
-        private void UpdateTime(float _time) => _timeView.UpdateTime(_time);
+        /// <summary>
+        /// Обновить время
+        /// </summary>
+        /// <param name="_time"></param>
+        public void UpdateTime(float _time) => _timeView.UpdateTime(_time);
 
         private void EndGame(float _time)
         {
@@ -47,8 +56,6 @@ namespace BalloonProject
 
             _gameOver.UpdateView(_time, _scoreView.CurrentScore);
             _gameOver.gameObject.SetActive(true);
-
-            Debug.LogError("end");
         }
 
     }

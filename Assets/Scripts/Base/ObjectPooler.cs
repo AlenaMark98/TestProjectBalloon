@@ -11,10 +11,6 @@ namespace BalloonProject.PoolObject
     public class Pool
     {
         /// <summary>
-        /// Тег объекта
-        /// </summary>
-        public string Tag;
-        /// <summary>
         /// Объект для спавна
         /// </summary>
         public ObjectSpawn ObjectSpawn;
@@ -59,7 +55,7 @@ namespace BalloonProject.PoolObject
 
             for (int i = 0; i < _listAllPoolInScene.Count; i++)
             {
-                if (_tag == _listAllPoolInScene[i].Tag && !_listAllPoolInScene[i].isActiveAndEnabled)
+                if (_tag == _listAllPoolInScene[i].ID && !_listAllPoolInScene[i].isActiveAndEnabled)
                 {
                     _listAllPoolInScene[i].gameObject.transform.position = _position;
                     _listAllPoolInScene[i].gameObject.transform.rotation = _rotation;
@@ -76,7 +72,7 @@ namespace BalloonProject.PoolObject
             {
                 foreach (Pool _pool in _pools)
                 {
-                    if (_pool.Tag == _tag)
+                    if (_pool.ObjectSpawn.ID == _tag)
                     {
                         GameObject _gameObj = Instantiate(_pool.ObjectSpawn.gameObject, _position, _rotation, _transform);
                         ObjectSpawn _objSpawn = _gameObj.GetComponent<ObjectSpawn>();

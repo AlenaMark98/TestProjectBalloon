@@ -11,6 +11,7 @@ namespace BalloonProject
     /// </summary>
     public class ResultsSaver : Saver
     {
+        private static GameObject _instance;
         /// <summary>
         /// Данные сохранены
         /// </summary>
@@ -20,6 +21,10 @@ namespace BalloonProject
         /// Ссылка на текущий результат
         /// </summary>
         public Result CurrentResult => _currentResult;
+        /// <summary>
+        /// Ссылка на все результаты
+        /// </summary>
+        public Results Results => _results;
 
         private Result _currentResult;
         private Results _results = new Results();
@@ -28,6 +33,13 @@ namespace BalloonProject
         {
             base.Awake();
             Load();
+
+            if (_instance != null)
+            { 
+                Destroy(_instance);
+            }
+            _instance = gameObject;
+            DontDestroyOnLoad(this);
         }
 
         public override void Load()
@@ -91,6 +103,11 @@ namespace BalloonProject
             Save();
         }
 
+        /// <summary>
+        /// Изменить параметр имени
+        /// </summary>
+        /// <param name="_id">id результата</param>
+        /// <param name="_name"> имя </param>
         public void SaveNameResult(string _id, string _name = "No Name")
         {
             foreach (var _result in _results.ListAllResults)

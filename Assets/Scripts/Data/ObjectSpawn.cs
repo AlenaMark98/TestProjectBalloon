@@ -35,14 +35,14 @@ namespace BalloonProject.Data
         /// <summary>
         /// Тег объекта
         /// </summary>
-        public string Tag
+        public string ID
         {
-            get => _tag;
+            get => _id;
             set
             {
-                if (value != _tag)
+                if (value != _id)
                 {
-                    _tag = value;
+                    _id = value;
                     OnChangedTag();
                 }
             }
@@ -116,7 +116,7 @@ namespace BalloonProject.Data
         /// </summary>
         public bool IsInit() => _init;
 
-        private string _tag = default;
+        private string _id = default;
         private int _point = default;
         private float _speed = default;
         private float _minSpeed = default;
@@ -133,7 +133,7 @@ namespace BalloonProject.Data
         {
             if (_objectSpawnSO != null)
             {
-                Tag = _objectSpawnSO.Tag;
+                ID = _objectSpawnSO.ID;
                 Point = _objectSpawnSO.Point;
                 MinSpeed = _objectSpawnSO.MinSpeed;
                 MaxSpeed = _objectSpawnSO.MaxSpeed;
@@ -150,5 +150,6 @@ namespace BalloonProject.Data
         /// Перемещение объекта
         /// </summary>
         public abstract void Move(Vector2 _directionMove);
+
     }
 }

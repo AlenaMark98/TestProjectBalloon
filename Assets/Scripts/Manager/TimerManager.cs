@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace BalloonProject
 {
-
     /// <summary>
     /// Менеджер времени уровня
     /// </summary>
@@ -57,11 +56,9 @@ namespace BalloonProject
             while (_currentTime <= _durationSeconds && _currentTime > 0)
             {
                 _currentTime --;
-                OnTick(_currentTime);
-
                 yield return new WaitForSeconds(1);
+                OnTick(_currentTime);
             }
-
             OnEndTime(_durationSeconds);
         }
 

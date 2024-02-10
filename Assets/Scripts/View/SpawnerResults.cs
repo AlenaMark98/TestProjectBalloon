@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BalloonProject.PoolObject;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BalloonProject.Data
@@ -9,33 +10,35 @@ namespace BalloonProject.Data
     public class SpawnerResults : MonoBehaviour
     {
         [SerializeField] private ResultView _resultPrefab;
+        private ResultsSaver _resultSaver = default;
 
         private List<ResultView> _resultsViewInScene = new List<ResultView>();
 
-        private List<Result> _results;
-
-        private void Awake()
-        {
-            Bootstrap.Instance.ResultsSaver.Load();
-        }
+        private void Awake() => _resultSaver = FindObjectOfType<ResultsSaver>();
 
         private void OnEnable()
         {
             SpawnResults();
         }
 
-        private void LoadResults()
-        {
-            //_results = new List<Result>();
-        }
-
         private void SpawnResults()
         {
-            //FiXME: спавн списка
-            GameObject _gameObj = Instantiate(_resultPrefab.gameObject, transform.position, Quaternion.identity, transform);
-            Result re = Bootstrap.Instance.ResultsSaver.CurrentResult;
-            ResultView _resultSpawn = _gameObj.GetComponent<ResultView>();
-            _resultSpawn.DisplayResult(re);
+            //TODO: Реализовать pool !
+
+            foreach (var _result in _resultsViewInScene)
+            {
+                Destroy(_result.gameObject);
+            }
+
+            foreach (var _result in _resultSaver.Results.ListAllResults)
+            {
+                GameObject _gameObj = Instantiate(_resultPrefab.gameObject, transform.position, Quaternion.identity, transform);
+
+                ResultView _resultSpawn = _gameObj.GetComponent<ResultView>();
+                _resultSpawn.DisplayResult(_result);
+
+                _resultsViewInScene.Add(_resultSpawn);
+            }
 
         }
     }

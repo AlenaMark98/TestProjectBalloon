@@ -8,15 +8,15 @@ namespace BalloonProject.Data
     [CreateAssetMenu(fileName = "ObjectSpawnSO", menuName = "BalloonProject/ObjectSpawnSO", order = 51)]
     public class ObjectSpawnSO : ScriptableObject
     {
-        [SerializeField] private string _tag = "Object";
+        [SerializeField] private string _id = "Object";
         [SerializeField] private int _point = 1;
         [SerializeField] private float _minSpeed = 3f;
         [SerializeField] private float _maxSpeed = 6f;
 
         /// <summary>
-        /// Категория объекта
+        /// ID объекта
         /// </summary>
-        public string Tag => _tag;
+        public string ID => _id;
 
         /// <summary>
         /// Очки за объект 

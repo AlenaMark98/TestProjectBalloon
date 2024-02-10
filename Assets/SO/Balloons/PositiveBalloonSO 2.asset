@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db72baa02c55e54986a195920afc3fe, type: 3}
   m_Name: PositiveBalloonSO 2
   m_EditorClassIdentifier: 
-  _tag: BalloonPositive2
+  _id: PositiveBalloon2
   _point: 2
-  _minSpeed: 5
+  _minSpeed: 6
   _maxSpeed: 8

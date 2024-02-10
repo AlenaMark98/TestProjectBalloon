@@ -28,15 +28,9 @@ namespace BalloonProject
             _textScore.text = _score;
         }
 
-        private void OnDestroy()
-        {
-            _buttonSave.onClick.RemoveListener(Save);
-        }
+        private void OnDestroy() => _buttonSave.onClick.RemoveListener(Save);
 
-        private void Save()
-        {
-            _resultSaver.SaveNameResult(_resultSaver.CurrentResult.ID, _inputField.text);
-        }
+        private void Save() => _resultSaver.SaveNameResult(_resultSaver.CurrentResult.ID, _inputField.text);
 
         /// <summary>
         /// Обновить данные отображения
