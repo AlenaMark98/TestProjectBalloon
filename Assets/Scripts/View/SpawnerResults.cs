@@ -16,7 +16,7 @@ namespace BalloonProject.Data
 
         private void Awake()
         {
-            Bootstrap.Instance.ResultSaver.Load();
+            Bootstrap.Instance.ResultsSaver.Load();
         }
 
         private void OnEnable()
@@ -33,7 +33,7 @@ namespace BalloonProject.Data
         {
             //FiXME: спавн списка
             GameObject _gameObj = Instantiate(_resultPrefab.gameObject, transform.position, Quaternion.identity, transform);
-            Result re = Bootstrap.Instance.ResultSaver.CUrrResult;
+            Result re = Bootstrap.Instance.ResultsSaver.CurrentResult;
             ResultView _resultSpawn = _gameObj.GetComponent<ResultView>();
             _resultSpawn.DisplayResult(re);
 

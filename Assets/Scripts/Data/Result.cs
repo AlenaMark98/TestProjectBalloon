@@ -41,6 +41,6 @@ namespace BalloonProject.Data
         /// <summary>
         /// Список всех результатов
         /// </summary>
-        public List<Result> AllResults = new List<Result>();
+        public List<Result> ListAllResults = new List<Result>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BalloonProject.View;
+using System;
 
 namespace BalloonProject
 {
@@ -8,10 +9,12 @@ namespace BalloonProject
     /// </summary>
     public class ScoreManager : MonoBehaviour
     {
-        [SerializeField]
-        private ScoreView _ScoreView;
+        /// <summary>
+        /// Время окончено 
+        /// </summary>
+        public event Action<int> OnUpdateScore = delegate { };
 
-        public int CurrentScore = 0;
+        private int _currentScore = 0;
 
         /// <summary>
         /// Обновить счет
@@ -19,8 +22,8 @@ namespace BalloonProject
         /// <param name="_number"></param>
         public void UpdateScore(int _number = 0)
         {
-            _ScoreView.CurrentScore += _number;
-            CurrentScore = _ScoreView.CurrentScore;
+            _currentScore += _number;
+            OnUpdateScore(_currentScore);
         }
     }
 }

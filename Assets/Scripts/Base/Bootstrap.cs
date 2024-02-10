@@ -9,6 +9,9 @@ namespace BalloonProject
     /// </summary>
     public class Bootstrap : MonoBehaviour
     {
+        /// <summary>
+        /// Данные сохранены
+        /// </summary>
         public event Action OnSaveResults = delegate { };
         
         /// <summary>
@@ -19,9 +22,11 @@ namespace BalloonProject
         [SerializeField] private LevelSettingsSO _levelSettings = default;
         [SerializeField] private TimerManager _timeManager = default;
         [SerializeField] private ScoreManager _scoreManager = default;
-        //FiXME: менеджеры вместо спавнеров
+        [SerializeField] private UIManager _uiManager = default;
+        //TODO: в дальнейшем нужны менеджеры
         [SerializeField] private SpawnerObject _spawnerObject = default;
-        [SerializeField] private ResultSaver _saveManager = default;
+        [SerializeField] private ResultsSaver _resultsSaver = default;
+
 
         /// <summary>
         /// Ссылка на экземляр класса
@@ -34,7 +39,11 @@ namespace BalloonProject
         /// <summary>
         /// Сссылка на экземляр класса
         /// </summary>
-        public ResultSaver ResultSaver => _saveManager;
+        public ResultsSaver ResultsSaver => _resultsSaver;
+        /// <summary>
+        /// Сссылка на экземляр класса
+        /// </summary>
+        public UIManager UIManager => _uiManager;
 
         private void Awake() => Instance = this;
 
@@ -44,18 +53,5 @@ namespace BalloonProject
             _spawnerObject.StartSpawn();
         }
 
-        private void OnEnable() => _timeManager.OnEndTime += EndGame;
-
-        private void OnDisable() => _timeManager.OnEndTime -= EndGame;
-
-        //FiXME: выполнениять в другом месте =
-        private void EndGame(float _time)
-        {
-            Time.timeScale = 0;
-            //FiXME: выполнить в другом классе
-            ResultSaver.SetCurrentResult(_levelSettings.Duration, _scoreManager.CurrentScore);
-            OnSaveResults();
-            Debug.LogError("end");
-        }
     }
 }
