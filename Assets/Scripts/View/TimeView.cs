@@ -17,9 +17,6 @@ namespace BalloonProject.View
         /// Обновить время
         /// </summary>
         /// <param name="_currentTime"> текущее время</param>
-        public void UpdateTime(float _currentTime)
-        {
-            _time.text =  "00 : " + _currentTime.ToString();
-        }
+        public void UpdateTime(float _currentTime) => _time.text = "00 : " + _currentTime.ToString();
     }
 }

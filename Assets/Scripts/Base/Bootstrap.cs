@@ -23,7 +23,7 @@ namespace BalloonProject
         [SerializeField] private TimerManager _timeManager = default;
         [SerializeField] private ScoreManager _scoreManager = default;
         [SerializeField] private UIManager _uiManager = default;
-        //TODO: в дальнейшем нужны менеджеры
+        //TODO: Нужнен менеджер
         [SerializeField] private SpawnerObject _spawnerObject = default;
         
         private ResultsSaver _resultsSaver = default;

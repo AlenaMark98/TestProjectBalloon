@@ -59,7 +59,7 @@ namespace BalloonProject
         {
             Vector2 _position = new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY));
             
-            //NOTE: можно добавить процент выпадения определнных значений
+            //TODO: добавить процент выпадения определнных значений
             int _numberObj = Random.Range(0, _objectPooler.Pools.Count);
 
             _objectPooler.SpawnPoolObject(_objectPooler.Pools[_numberObj].ObjectSpawn.ID, _position, Quaternion.identity, transform);

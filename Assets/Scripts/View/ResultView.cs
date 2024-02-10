@@ -1,13 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using BalloonProject.Data;
+using BalloonProject.PoolObject;
 
-namespace BalloonProject.Data
+namespace BalloonProject.View
 {
     /// <summary>
     /// Вьющка результатов
     /// </summary>
-    public class ResultView : MonoBehaviour, IPoolObject
+    public class ResultView : MonoBehaviour
     {
         [SerializeField] private InputField _inputField = default;
         [SerializeField] private Text _time = default;
@@ -38,11 +40,6 @@ namespace BalloonProject.Data
             _time.text = "00 : " + _result.Time.ToString();
             _date.text = _result.Date.ToString();
             _score.text = _result.Score.ToString();
-        }
-
-        public void OnSpawnPoolObject()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BalloonProject.Data
+﻿namespace BalloonProject.PoolObject
 {
     /// <summary>
     /// Пул объект

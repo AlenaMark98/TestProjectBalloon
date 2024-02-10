@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +8,7 @@ namespace BalloonProject
     /// </summary>
     public class LoadScene : MonoBehaviour
     {
-        //NOTE: Добавить загрузочнцю сцену (лоадинг)
+        //TODO: Добавить загрузочнцю сцену (лоадинг)
 
         /// <summary>
         /// Загрузить сцену

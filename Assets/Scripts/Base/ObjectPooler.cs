@@ -10,6 +10,8 @@ namespace BalloonProject.PoolObject
     [System.Serializable]
     public class Pool
     {
+        //TODO: Переделать на общий тип пул
+
         /// <summary>
         /// Объект для спавна
         /// </summary>

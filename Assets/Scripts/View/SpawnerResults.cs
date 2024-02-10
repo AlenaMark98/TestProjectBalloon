@@ -1,8 +1,9 @@
 ﻿using BalloonProject.PoolObject;
 using System.Collections.Generic;
 using UnityEngine;
+using BalloonProject.View;
 
-namespace BalloonProject.Data
+namespace BalloonProject
 {
     /// <summary>
     /// Спавнер результатов
@@ -16,15 +17,11 @@ namespace BalloonProject.Data
 
         private void Awake() => _resultSaver = FindObjectOfType<ResultsSaver>();
 
-        private void OnEnable()
-        {
-            SpawnResults();
-        }
+        private void OnEnable() => SpawnResults();
 
         private void SpawnResults()
         {
-            //TODO: Реализовать pool !
-
+            //FIXME: Реализовать pool
             foreach (var _result in _resultsViewInScene)
             {
                 Destroy(_result.gameObject);

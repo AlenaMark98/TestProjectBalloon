@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace BalloonProject
 {
+    /// <summary>
+    /// Отображение окончания игры
+    /// </summary>
     public class GameOverView : MonoBehaviour
     {
         [SerializeField] private InputField _inputField = default;

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using BalloonProject.PoolObject;
 
 namespace BalloonProject.Data
 {
@@ -15,10 +14,14 @@ namespace BalloonProject.Data
         private Rigidbody2D _rb = default;
         private Animator _animator = default;
 
+        private ScoreManager _scoreManager = default;
+
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+
+            _scoreManager = Bootstrap.Instance.ScoreManager;
         }
 
         private void FixedUpdate() => Move(_directionUP);
@@ -37,11 +40,10 @@ namespace BalloonProject.Data
 
         private void Bang() => gameObject.SetActive(false);
 
-        //NOTE: не разделен контроллер от даты
         public void OnPointerDown(PointerEventData eventData)
         {
             _animator.SetTrigger("Bang");
-            Bootstrap.Instance.ScoreManager.UpdateScore(Point);
+            _scoreManager.UpdateScore(Point);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using BalloonProject.Data;
-using BalloonProject.View;
+﻿using BalloonProject.View;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -20,8 +19,7 @@ namespace BalloonProject
         /// </summary>
         public event Action<float> OnTick = delegate { };
 
-        [SerializeField]
-        private TimeView _timeView;
+        [SerializeField] private TimeView _timeView;
 
         private float _durationSeconds;
         private float _currentTime;
